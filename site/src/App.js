@@ -1,16 +1,19 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import Uploader from './components/Uploader';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { AuthProvider } from './components/contexts/Auth'
+import Home from './components/views/Home'
+import Login from './components/views/Login'
 
 
 function App() {
   return (
-    <div>
-      Cloud transcriber under work!
-      <br/>
-      <Uploader/>
-    </div>
-  );
+    <AuthProvider>
+      <Router>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/login' component={Login} />
+      </Router>
+    </AuthProvider>
+  )
 }
 
-export default App;
+export default App
