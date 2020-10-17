@@ -1,12 +1,13 @@
-import React from 'react'
-
+import React, { useContext } from 'react'
+import View from '../common/View'
+import { AuthContext } from '../contexts/Auth'
 
 const Home = () => {
+    const { user } = useContext(AuthContext)
     return (
-        <>
-            <h1> Home </h1>
-            
-        </>
+        <View>
+            <h1> Home{user && ', you are logged in'} </h1>
+        </View>
     )
 }
 
