@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const FileInput = ({onChange}) => {
+const FileInput = ({ onChange }) => {
     const handleChange = e => onChange(e.target.files[0]);
 
     return (

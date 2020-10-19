@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import View from '../common/View'
 import LoginForm from '../authentication/Login'
 
