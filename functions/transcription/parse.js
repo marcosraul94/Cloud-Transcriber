@@ -4,7 +4,7 @@ const parseTranscriptResult = ({ results }) =>
 
 const parseRequest = ({ body }) => {
     return {
-        name: body.name,
+        operationName: body.operationName,
         user: body.user,
     }
 }

@@ -5,9 +5,10 @@ const { validateUploadObject } = require('./validation')
 const { createTranscript  } = require('../db/transcript')
 
 
-const saveStartTranscribeProcessState = async ({ operationName, uri, language, user, durationMs, }) => {
+const saveTranscriptionStartState = async ({ operationName, uri, language, user, durationMs, }) => {
     const id = operationName
     const data = {
+        text: null,
         user, 
         audio: { durationMs, uri, language },
     }
@@ -26,7 +27,7 @@ const startTranscriptionProcess = async object => {
     data.operationName = operation.name
     functions.logger.info(data)
 
-    await saveStartTranscribeProcessState(data)
+    await saveTranscriptionStartState(data)
     functions.logger.info( Object.assign(data, { status: 'Start transcript process saved' }) )
 }
 

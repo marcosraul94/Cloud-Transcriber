@@ -2,7 +2,7 @@ const { firestore } = require('firebase-admin')
 const { db } = require('../firebase')
 
 
-const TRANSCRIPT = 'transcript'
+const TRANSCRIPT = 'transcripts'
 
 
 const createTranscript = async (id, data) => {
