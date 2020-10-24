@@ -27,7 +27,9 @@ const parseUser = object => {
 const parseUploadObject = object => {
     return {
         uri: parseURI(object),
-        user: parseUser(object),
+        user: parseUser(object) || 'marcos',
+        language: 'english',
+        durationMs: 0, 
     }
 }
 

@@ -1,16 +1,12 @@
 const { parseUploadObject } = require('./parse')
-const { validateRequiredFieldsInRequest } = require('../utils/validation')
-
-
-const validateRequiredFields = parsedRequest => {
-    const requiredFields = ['uri',]
-    validateRequiredFieldsInRequest(requiredFields, parsedRequest)
-}
+const { validateRequiredFields } = require('../utils/validation')
 
 
 const validateUploadObject = object => {
     const parsedRequest = parseUploadObject(object)
-    validateRequiredFields(parsedRequest)
+
+    const requiredFields = ['uri',]
+    validateRequiredFields(requiredFields, parsedRequest)
 }
 
 

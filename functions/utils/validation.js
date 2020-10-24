@@ -1,13 +1,11 @@
-const validateRequiredFieldsInRequest = (requiredFields = [], parsedRequest = {}) => {
-    const printableRequest = JSON.stringify(parsedRequest)
-
+const validateRequiredFields = (requiredFields = [], data = {}) => {
     for (const field of requiredFields) {
-        const isFieldMissing = !parsedRequest[field]
-        if (isFieldMissing) throw new Error(`Missing required field ${field} from request ${printableRequest}`)
+        const isFieldMissing = !data[field]
+        if (isFieldMissing) throw new Error(`Missing required field ${field} from ${JSON.stringify(data)}`)
     }
 }
 
 
 module.exports = {
-    validateRequiredFieldsInRequest
+    validateRequiredFields
 }

@@ -1,16 +1,12 @@
 const { parseRequest } = require('./parse')
-const { validateRequiredFieldsInRequest } = require('../utils/validation')
+const { validateRequiredFields } = require('../utils/validation')
 
 
-const validateRequiredFields = parsedRequest => {
+const validateTranscriptCheckRequest = request => {
+    const parsedRequest = parseRequest(request)
+
     const requiredFields = ['name']
-    validateRequiredFieldsInRequest(requiredFields, parsedRequest)
-}
-
-
-const validateTranscriptCheckRequest = req => {
-    const parsedReq = parseRequest(req)
-    validateRequiredFields(parsedReq)
+    validateRequiredFields(requiredFields, parsedRequest)
 }
 
 
