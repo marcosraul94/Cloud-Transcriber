@@ -2,18 +2,7 @@ const functions = require('firebase-functions')
 const transcribe = require('./transcribe')
 const { parseUploadObject } = require('./parse')
 const { validateUploadObject } = require('./validation')
-const { createTranscript  } = require('../db/transcript')
-
-
-const saveTranscriptionStartState = async ({ operationName, uri, language, user, durationMs, }) => {
-    const id = operationName
-    const data = {
-        text: null,
-        user, 
-        audio: { durationMs, uri, language },
-    }
-    return createTranscript(id, data)
-}
+const { saveTranscriptionStartState  } = require('../db/transcript')
 
 
 const startTranscriptionProcess = async object => {

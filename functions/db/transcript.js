@@ -21,8 +21,34 @@ const updateTranscript = async (id, data) => {
 }
 
 
+const saveTranscriptionDoneState = async ({ operationName, transcriptionText }) => {
+    const id = operationName
+    const data = { text: transcriptionText, }
+    return updateTranscript(id, data)
+}
+
+
+const saveTranscriptionPendingState = async ({ operationName, }) => {
+    const id = operationName
+    const data = {}
+    return updateTranscript(id, data)
+}
+
+
+const saveTranscriptionStartState = async ({ operationName, uri, language, user, durationMs, }) => {
+    const id = operationName
+    const data = {
+        text: null,
+        user, 
+        audio: { durationMs, uri, language },
+    }
+    return createTranscript(id, data)
+}
+
 
 module.exports = {
     createTranscript,
     updateTranscript,
+    saveTranscriptionDoneState,
+    saveTranscriptionPendingState,
 }

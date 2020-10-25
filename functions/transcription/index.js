@@ -2,21 +2,7 @@ const functions = require('firebase-functions')
 const speech = require('@google-cloud/speech')
 const { parseRequest, parseTranscriptResult } = require('./parse')
 const { validateTranscriptCheckRequest } = require('./validation')
-const { updateTranscript } = require('../db/transcript')
-
-
-const saveTranscriptionDoneState = async ({ operationName, transcriptionText }) => {
-    const id = operationName
-    const data = { text: transcriptionText, }
-    return updateTranscript(id, data)
-}
-
-
-const saveTranscriptionPendingState = async ({ operationName, }) => {
-    const id = operationName
-    const data = {}
-    return updateTranscript(id, data)
-}
+const { saveTranscriptionDoneState, saveTranscriptionPendingState } = require('../db/transcript')
 
 
 const checkTranscriptionProgress = async (req, res) => {
