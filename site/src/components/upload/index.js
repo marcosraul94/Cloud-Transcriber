@@ -4,9 +4,10 @@ import { AuthContext } from '../contexts/Auth'
 import FileInput from '../common/FileInput'
 
 
-const UploadForm = () => {
+const AudioUploadForm = () => {
     const [file, setFile] = useState()
-    const { user: { uid } } = useContext(AuthContext)
+    const { user = {} } = useContext(AuthContext)
+    const { uid } = user
 
     const generateCloudPath = fileName => `${uid}/${fileName}`
 
@@ -26,4 +27,5 @@ const UploadForm = () => {
     );
 }
 
-export default UploadForm
+
+export default AudioUploadForm
