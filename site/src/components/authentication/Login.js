@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import firebase from '../../firebase';
+import firebaseApp from '../../firebase';
 import TextInput from '../common/TextInput'
 import PasswordInput from '../common/PasswordInput'
 import Button from '../common/Button'
@@ -11,7 +11,7 @@ const LoginForm = () => {
 
     const handleClick = async () => {
         try {
-            const response = await firebase.auth().signInWithEmailAndPassword(email, password)
+            const response = await firebaseApp.auth().signInWithEmailAndPassword(email, password)
             console.log(response)
         }
         catch (error) {

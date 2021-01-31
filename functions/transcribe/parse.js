@@ -10,26 +10,26 @@ const parseLanguageCode = language => {
     return isLanguageValid && languageCodeMap[normalizedLanguage]
 }
 
-
-const parseURI = object => {
-    const { name, bucket } = object
-    return `gs://${bucket}/${name}`
-}
+const parseMetadata = object => object.metadata
 
 
-const parseUser = object => {
-    const { name = '' } = object
-    const sep = '/'
-    return name.includes(sep) ? name.split(sep)[0] : null
-}
+const parseURI = object => parseMetadata(object).uri
+
+
+const parseUser = object => parseMetadata(object).user
+
+
+const parseLanguage = object => parseMetadata(object).language
+
+const parseDocId = object => parseMetadata(object).docId
 
 
 const parseUploadObject = object => {
     return {
         uri: parseURI(object),
-        user: parseUser(object) || 'marcos',
-        language: 'english',
-        durationMs: 0, 
+        user: parseUser(object),
+        language: parseLanguage(object),
+        docId: parseDocId(object),
     }
 }
 

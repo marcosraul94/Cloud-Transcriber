@@ -6,6 +6,7 @@ const parseRequest = ({ body }) => {
     return {
         operationName: body.operationName,
         user: body.user,
+        docId: body.docId
     }
 }
 

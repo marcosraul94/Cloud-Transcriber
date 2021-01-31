@@ -13,7 +13,6 @@ const createTranscript = async (id, data) => {
 }
     
 
-
 const updateTranscript = async (id, data) => {
     const updated = firestore.FieldValue.serverTimestamp()
     const dataWithTimestamp = Object.assign({}, data, { updated })
@@ -21,34 +20,28 @@ const updateTranscript = async (id, data) => {
 }
 
 
-const saveTranscriptionDoneState = async ({ operationName, transcriptionText }) => {
-    const id = operationName
+const saveTranscriptionDoneState = async ({ transcriptionText, docId }) => {
     const data = { text: transcriptionText, }
-    return updateTranscript(id, data)
+    return updateTranscript(docId, data)
 }
 
 
-const saveTranscriptionPendingState = async ({ operationName, }) => {
-    const id = operationName
+const saveTranscriptionPendingState = async ({ docId }) => {
     const data = {}
-    return updateTranscript(id, data)
+    return updateTranscript(docId, data)
 }
 
 
-const saveTranscriptionStartState = async ({ operationName, uri, language, user, durationMs, }) => {
-    const id = operationName
-    const data = {
-        text: null,
-        user, 
-        audio: { durationMs, uri, language },
-    }
-    return createTranscript(id, data)
+const saveTranscriptionStartState = async ({ operationName, docId }) => {
+    const data = { operationName }
+    return updateTranscript(docId, data)
 }
 
 
 module.exports = {
     createTranscript,
     updateTranscript,
+    saveTranscriptionStartState,
     saveTranscriptionDoneState,
     saveTranscriptionPendingState,
 }

@@ -6,10 +6,11 @@ const { saveTranscriptionDoneState, saveTranscriptionPendingState } = require('.
 
 
 const checkTranscriptionProgress = async (req, res) => {
+    const data = parseRequest(req)
+    functions.logger.warn(data)
     validateTranscriptCheckRequest(req)
 
-    const { operationName, user } = parseRequest(req)
-    const data = { operationName, user }
+    const { operationName } = data
     const speechClient = new speech.SpeechClient()
     const operation = await speechClient.checkLongRunningRecognizeProgress(operationName)
 

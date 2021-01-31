@@ -9,7 +9,7 @@ const startTranscriptionProcess = async object => {
     validateUploadObject(object)
     const data = Object.assign( parseUploadObject(object), { status: 'Starting transcribing process' } )
     functions.logger.info(data)
-    
+
     const { uri, language } = data
     const operation = await transcribe(uri, language)
     data.status = 'Transcribing process started'
